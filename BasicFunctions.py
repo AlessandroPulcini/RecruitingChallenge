@@ -7,7 +7,7 @@ def average(a, b):
 # Task 2
 def reverse_list(input_list):
         return input_list[-1::-1]
-
+# modifica
 
 # Task 3
 def sort_numbers_descending(number_list):
