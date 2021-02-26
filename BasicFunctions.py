@@ -60,8 +60,6 @@ def execute_safely(operator, a, b):
     """
     try:
         result = operator(a, b)
-    except ZeroDivisionError:
-        result=-1
-    except ValueError:
+    except (ZeroDivisionError, ValueError):
         result=-1
     return result
