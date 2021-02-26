@@ -40,7 +40,12 @@ def element_wise_merge(list1, list2):
     :param list2: list of strings of the same length as list1
     :return: new list of merged strings
     """
-    return None
+    merged_list = []
+    new_element = ""
+    for element in range(len(list1)):
+        new_element = list1[element] + " " + list2[element]
+        merged_list.append(new_element)
+    return merged_list[:]
 
 
 # Task 7
