@@ -1,11 +1,13 @@
 from Utils import EvenStream
-
+from decimal import Decimal as D
 
 # Task 11
 def calculate_cost(duration_in_seconds):
-    minute_rate = 1.45
-    cost = minute_rate * duration_in_seconds / 60
-    return cost
+    minute_rate = D("1.45")
+    temp_duration_in_seconds = D(str(duration_in_seconds))
+    seconds_in_minute = D("60")
+    cost = minute_rate * temp_duration_in_seconds / seconds_in_minute
+    return float(cost)
 
 
 # Task 12
