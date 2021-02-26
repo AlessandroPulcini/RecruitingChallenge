@@ -1,3 +1,5 @@
+from Utils import InvalidOperationException
+
 # Task 8
 class Rectangle:
     def __init__(self, initb, inith):
@@ -23,8 +25,8 @@ class Product:
         return self.name + " costs " + str(self.price) + " euro(s)"
 
 # Task 10
-
 class PhoneBook:
+
     def __init__(self):
         self.names = []
         self.numbers = []
@@ -35,7 +37,9 @@ class PhoneBook:
         :param number: an integer number
         :param name: a string
        """
-        if name not in self.names:
+        try:
+            assert name not in self.names
+        #if name not in self.names:
             pos = next((i for i, record in enumerate(self.names) if name < record ), -1)
             if pos == -1:
                 self.names.append(name)
@@ -43,7 +47,9 @@ class PhoneBook:
             else:
                 self.names.insert(pos, name)
                 self.numbers.insert(pos, number)
-        else:
+        #else:
+        except AssertionError:
+            #raise InvalidOperationException(Exception())
             pass
 
     def del_number(self, name):
