@@ -6,12 +6,14 @@ def average(a, b):
 
 # Task 2
 def reverse_list(input_list):
-        return input_list[-1::-1]
+    return input_list[::-1]
 
 
 # Task 3
 def sort_numbers_descending(number_list):
-    return None
+    reverse_order_list = number_list[:]
+    reverse_order_list.sort(reverse=True)
+    return reverse_order_list
 
 
 # Task 4
@@ -37,6 +39,7 @@ def element_wise_merge(list1, list2):
 
 # Task 7
 def execute_safely(operator, a, b):
+
     """
     Function that executes operator on arguments (a, b) -- or returns -1
     :param operator: some real-valued function, taking on input two real arguments
@@ -44,4 +47,10 @@ def execute_safely(operator, a, b):
     :param b: a real number
     :return: operator evaluated on (a,b) -- or -1 if this operation would be illegal
     """
-    return operator(a, b)
+    try:
+        result = operator(a, b)
+    except ZeroDivisionError:
+        result=-1
+    except ValueError:
+        result=-1
+    return result
