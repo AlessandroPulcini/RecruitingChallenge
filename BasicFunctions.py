@@ -18,12 +18,18 @@ def sort_numbers_descending(number_list):
 
 # Task 4
 def add_indices(string_list):
-    return None
+    new_list = []
+    for index in range(len(string_list)):
+        new_list.append(str(index + 1) + ". " + string_list[index])
+    return new_list
 
 
 # Task 5
 def capitalize_last_letter_in_each_word(string):
-    return None
+    new_string = ""
+    for word in string.split():
+        new_string += word[:-1] + word[-1].upper() + " "
+    return new_string[:-1]
 
 
 # Task 6
