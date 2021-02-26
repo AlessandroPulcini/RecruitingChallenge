@@ -23,6 +23,7 @@ class Product:
         return self.name + " costs " + str(self.price) + " euro(s)"
 
 # Task 10
+
 class PhoneBook:
     def __init__(self):
         self.names = []
