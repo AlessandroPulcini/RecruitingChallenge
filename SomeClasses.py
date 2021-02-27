@@ -39,7 +39,6 @@ class PhoneBook:
        """
         try:
             assert name not in self.names
-        #if name not in self.names:
             pos = next((i for i, record in enumerate(self.names) if name < record ), -1)
             if pos == -1:
                 self.names.append(name)
@@ -47,22 +46,21 @@ class PhoneBook:
             else:
                 self.names.insert(pos, name)
                 self.numbers.insert(pos, number)
-        #else:
         except AssertionError:
-            #raise InvalidOperationException(Exception())
-            pass
+            raise InvalidOperationException(AssertionError)
 
     def del_number(self, name):
         """
         Delete a contact or throw InvalidOperationException if it is not present
         :param name: a string
         """
-        if name in self.names:
+        try:
+            assert name in self.names
             pos = self.names.index(name)
             self.names.pop(pos)
             self.numbers.pop(pos)
-        else:
-            pass
+        except AssertionError:
+            raise InvalidOperationException(AssertionError)
 
     def size(self):
         """
