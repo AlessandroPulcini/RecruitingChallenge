@@ -1,17 +1,23 @@
 from Utils import InvalidOperationException
 
+
 # Task 8
 class Rectangle:
     def __init__(self, initb, inith):
         self.b = initb
         self.h = inith
+
     def area(self):
         return self.b * self.h
 
+
 from math import pi
+
+
 class Circle:
     def __init__(self, initr):
         self.r = initr
+
     def area(self):
         return self.r * self.r * pi
 
@@ -21,15 +27,15 @@ class Product:
     def __init__(self, initn, initp):
         self.name = initn
         self.price = initp
+
     def __str__(self):
         return self.name + " costs " + str(self.price) + " euro(s)"
 
+
 # Task 10
 class PhoneBook:
-
     def __init__(self):
-        self.names = []
-        self.numbers = []
+        self.records = {}
 
     def add_number(self, name, number):
         """
@@ -37,16 +43,9 @@ class PhoneBook:
         :param number: an integer number
         :param name: a string
        """
-        try:
-            assert name not in self.names
-            pos = next((i for i, record in enumerate(self.names) if name < record ), -1)
-            if pos == -1:
-                self.names.append(name)
-                self.numbers.append(number)
-            else:
-                self.names.insert(pos, name)
-                self.numbers.insert(pos, number)
-        except AssertionError:
+        if name not in self.records:
+            self.records[name] = number
+        else:
             raise InvalidOperationException(AssertionError)
 
     def del_number(self, name):
@@ -54,19 +53,16 @@ class PhoneBook:
         Delete a contact or throw InvalidOperationException if it is not present
         :param name: a string
         """
-        try:
-            assert name in self.names
-            pos = self.names.index(name)
-            self.names.pop(pos)
-            self.numbers.pop(pos)
-        except AssertionError:
+        if name in self.records:
+            del self.records[name]
+        else:
             raise InvalidOperationException(AssertionError)
 
     def size(self):
         """
         :return: current size of PhoneBook
         """
-        return len(self.names)
+        return len(self.records)
 
     def get_all(self):
         """
@@ -74,8 +70,7 @@ class PhoneBook:
         merged and separated by ';' and a space. The entries should be sorted alphabetically
         """
         output = ""
-        for i in range(len(self.names)):
-            output += self.names[i] + ": " + str(self.numbers[i])
-            if i != len(self.names) - 1:
-                output += "; "
-        return output
+        keys_list = sorted(list(self.records.keys()))
+        for key in keys_list:
+            output += key + ": " + str(self.records[key]) + "; "
+        return output[:-2]
