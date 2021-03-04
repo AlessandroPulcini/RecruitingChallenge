@@ -1,7 +1,9 @@
 # Task 1
+from typing import List, Any
+
+
 def average(a, b):
-    average = (a + b) / 2
-    return average
+    return (a + b) / 2
 
 
 # Task 2
@@ -11,17 +13,14 @@ def reverse_list(input_list):
 
 # Task 3
 def sort_numbers_descending(number_list):
-    reverse_order_list = number_list[:]
-    reverse_order_list.sort(reverse=True)
-    return reverse_order_list
+    return sorted(number_list, reverse=True)
 
 
 # Task 4
 def add_indices(string_list):
-    new_list = []
-    for index in range(len(string_list)):
-        new_list.append(str(index + 1) + ". " + string_list[index])
-    return new_list
+    for index, element in enumerate(string_list):
+        string_list[index] = str(index + 1) + ". " + element
+    return string_list
 
 
 # Task 5
@@ -41,16 +40,14 @@ def element_wise_merge(list1, list2):
     :return: new list of merged strings
     """
     merged_list = []
-    new_element = ""
-    for element in range(len(list1)):
-        new_element = list1[element] + " " + list2[element]
+    for el1, el2 in zip(list1, list2):
+        new_element = el1 + " " + el2
         merged_list.append(new_element)
-    return merged_list[:]
+    return merged_list
 
 
 # Task 7
 def execute_safely(operator, a, b):
-
     """
     Function that executes operator on arguments (a, b) -- or returns -1
     :param operator: some real-valued function, taking on input two real arguments
